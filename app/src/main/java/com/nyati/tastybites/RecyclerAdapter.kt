@@ -80,6 +80,10 @@ class RecyclerAdapter(var context: Context) : RecyclerView.Adapter<RecyclerAdapt
         //Below to be Done At the End to demonstrate how to move to Next Page on Item Click
         viewHolder.itemView.setOnClickListener {
 
+            val intent = Intent(context, SingleItemActivity::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            context.startActivity(intent)
+
 
       }
     }

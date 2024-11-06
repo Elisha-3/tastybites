@@ -1,12 +1,16 @@
 package com.nyati.tastybites
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.FrameLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +40,24 @@ class MainActivity : AppCompatActivity() {
 
 //        bind/load the data to recyclerView
         recyclerView.adapter = adapter
+
+//        find the bottom sheet by id
+        val bottomsheet = findViewById<FrameLayout>(R.id.bottomsheet)
+
+        BottomSheetBehavior.from(bottomsheet).apply {
+            peekHeight = 350
+            this.state = BottomSheetBehavior.STATE_COLLAPSED
+        }
+
+//        fetch order button
+        val btnorder = findViewById<Button>(R.id.ordernow)
+        btnorder.setOnClickListener {
+//            explicit intent to go to single item activity
+            val intent = Intent(applicationContext, OrderActivity::class.java)
+            startActivity(intent)
+        }
+
+
 
 
     }
